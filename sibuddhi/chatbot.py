@@ -1,5 +1,5 @@
 from groq import Groq
-from database import add_questions
+from sibuddhi.db import add_questions
 import os
 from dotenv import load_dotenv
 

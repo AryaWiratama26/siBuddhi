@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>siBuddhi - AI Buddhist Psychologist</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <h1>siBuddhi - AI Buddhist Psychologist</h1>
+    
+    <form action="/ask" method="post">
+        <label for="question">Ajukan Pertanyaan:</label>
+        <input type="text" id="question" name="question" required>
+        <button type="submit">Tanya</button>
+    </form>
+
+    {% if question %}
+    <div class="response-container">
+        <h2>Pertanyaan:</h2>
+        <p><strong>{{ question }}</strong></p>
+        <h2>Jawaban:</h2>
+        <p>{{ response | safe }}</p>
+    </div>
+    {% endif %}
+
+    <div class="history-container">
+        <h2>Riwayat Pertanyaan:</h2>
+        <ul>
+            {% for q in all_questions %}
+                <li>
+                    <strong>{{ q[1] }}</strong>: <span>{{ q[2] | safe }}</span>
+                </li>
+            {% else %}
+                <li>Belum ada pertanyaan.</li>
+            {% endfor %}
+        </ul>
+    </div>
+    
+
+</body>
+</html>
